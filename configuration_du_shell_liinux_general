@@ -1,0 +1,66 @@
+--------------------------------------------------------------
+          Configuration Ubuntu Server Core                   -
+--------------------------------------------------------------
+
+sudo nano -l /etc/netplan/00-installer-config.yaml // pour editer le fichier de configuration du serveur 
+sudo netplan apply // pour appliquer les changements si vous ne le faites pas ,les configurations ne prendrons jamais effet.
+
+-------------------------------------------------------------
+                    Comment changer le shell
+-------------------------------------------------------------
+   -->voir le shell courant : 
+              ┌──(user㉿kali)-[~]
+              └─$ cat /etc/shells
+                
+   -->voir les utilisateurs et les shells concerner:
+              ┌──(user㉿kali)-[~]
+              └─$ cat /etc/passwd
+              └─$ sudo nano -l /etc/passwd
+  
+
+  -->changer le shell par defaut:
+          sudo chsh -s <shell>
+        ou
+          sudo nano -l /etc/passwd
+
+-----------------------------------------------------------
+    voir les informations des paquets apt                 -
+-----------------------------------------------------------
+   -->voir la taille d'un paquet deja existant : 
+            apt show <nom_paquet> |grep size
+      exemple: apt show firefox |grep size
+
+----------------------------------------------------------
+                         SYSTEMCTL                       -
+  --------------------------------------------------------
+   -->voir les services presents
+      cmd: systemctl list-unit-files --type =service
+   -->voir le status d'un service 
+      cmd: sudo systemctl status <service>
+   --> mettre un service en mode enable
+      cmd: sudo systemctl enable <service>
+   --> mettre un service en mode disable
+      cmd: sudo systemctl disable <service>
+   -->comment redemarer ,demarrer,arreter un service: valeur->restart ,start,stop
+          sudo systemctl <valeur> <service>
+
+  
+--------------------------------------------------------------------------
+  installer les vm-tools sur les machines virtuelles CAS UBUNTU DESKTOP  -
+--------------------------------------------------------------------------
+    1er etape:  sudo apt update // faire un update 
+    2eme etape: sudo apt install open-vm-tools-Desktop -y
+
+----------------------------------------------------------
+                       MOUNT DISK LINUX                  -
+----------------------------------------------------------
+  comment resoudre le probleme de montage de disk dur
+  +++++++++++++++++++++++++++++++++++++++++++++++++++
+    Ce probleme survient la plupart du temps quand le peripherique a ete brutalement retirer sous linux 
+      1er etape afficher les disques au montage presents
+            cmd: lsblk [enter]
+      2eme etape :
+            cmd :sudo ntfsfix /dev/sdbx [enter] //x represente l indice du disk concerner
+                                      
+
+      
